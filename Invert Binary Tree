@@ -1,0 +1,17 @@
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if(root == NULL)return NULL;
+        solve(root);
+        return root;
+    }
+    void solve(TreeNode* root){
+        if(root==NULL)return;
+        solve(root->left);
+        solve(root->right);
+        TreeNode* temp1 = new TreeNode();
+        temp1 = root->left;
+        root->left = root->right;
+        root->right = temp1;
+    }
+};
