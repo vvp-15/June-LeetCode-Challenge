@@ -1,0 +1,25 @@
+class Solution {
+public:
+    static bool compare(pair<int,pair<int,int>>& a,pair<int,pair<int,int>>& b){
+        if(a.first>b.first)return true;
+        else return false;
+    }
+    int twoCitySchedCost(vector<vector<int>>& costs) {
+        int n = costs.size();
+        vector<pair<int,pair<int,int>>>v;
+        for(auto u:costs){
+            int x = u[0];
+            int y = u[1];
+            v.push_back({y-x,{x,y}});
+        }
+        sort(v.begin(),v.end(),compare);
+        int sum=0;
+        for(int i=1;i<=n;i++){
+            if(i<=n/2)
+            sum+=v[i-1].second.first;
+            else
+            sum+=v[i-1].second.second;
+        }
+        return sum;
+    }
+};
