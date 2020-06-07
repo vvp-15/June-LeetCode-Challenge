@@ -1,0 +1,30 @@
+class Solution {
+    static bool compare(vector<int>& a,vector<int>& b){
+        if(a[0]<b[0])return true;
+        else if(a[0]==b[0]){
+            return a[1]<b[1];
+        }
+        return false;
+    }
+public:
+    vector<vector<int>> reconstructQueue(vector<vector<int>>& people) {
+       
+        int n = people.size();
+        vector<vector<int>>temp(n,vector<int>(2,-1));
+        
+        sort(people.begin(),people.end(),compare);
+        
+        for(int i=0;i<n;i++){
+            int x = people[i][1];
+            for(int j=0;j<n;j++){
+                if(temp[j][0]==-1 && x==0){
+                    temp[j][0] = people[i][0];
+                    temp[j][1] = people[i][1];
+                    break;
+                }
+                else if(temp[j][0]==-1 || temp[j][0] >= people[i][0])x--;
+            }
+        }
+        return temp;
+    }
+};
