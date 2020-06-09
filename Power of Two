@@ -1,3 +1,17 @@
+            // 1st APPROACH
+class Solution {
+public:
+    bool isPowerOfTwo(int n) {
+        int count1=0;
+        while(n){
+            if(n&1)count1++;
+            if(count1>1){break;}
+            n=n>>1;
+        }
+        return (count1==1);
+    }
+};
+            //2nd APPROACH
 class Solution {
 public:
     bool isPowerOfTwo(int n) {
